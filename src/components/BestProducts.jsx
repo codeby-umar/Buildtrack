@@ -265,4 +265,4 @@ function BestProdects() {
   );
 }
 
-export default BestProducts;
+export default BestProdects;
