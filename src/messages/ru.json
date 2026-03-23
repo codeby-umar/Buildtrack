@@ -27,7 +27,9 @@
       "start": "Начать",
       "contact": "Связаться",
       "more": "Подробнее"
-    }
+    },
+    "search": "Поиск",
+    "cart": "Корзина"
   },
   "home": {
     "brand": "BuildTrack",
@@ -38,7 +40,8 @@
       "delivery": "Доставка",
       "posPayroll": "POS и Зарплата",
       "premiumRental": "Премиум / Аренда",
-      "contact": "Контакты"
+      "contact": "Контакты",
+      "settings": "Настройки"
     },
     "hero": {
       "badge": "Современная строительная платформа",
@@ -49,11 +52,11 @@
       "secondaryButton": "Подробнее"
     },
     "footer": {
-      "description": "BuildTrack — современная платформа для продажи стройматериалов и управления складом.",
-      "company": "Компания",
-      "support": "Поддержка",
-      "contact": "Контакты",
-      "rights": "Все права защищены."
+      "title": "Реклама и сотрудничество",
+      "title1": "Публичная оферта",
+      "title2": "Поддержка",
+      "description": "Все права защищены",
+      "save": "BuildTrack group © 2026"
     }
   },
   "dashboard": {

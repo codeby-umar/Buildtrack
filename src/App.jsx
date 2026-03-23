@@ -15,6 +15,7 @@ import Delivery from "./pages/Delivery";
 import PosPayroll from "./pages/PosPayroll";
 import Contact from "./pages/Contact";
 import PremiumRental from "./pages/PremiumRental";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="pos-payroll" element={<PosPayroll />} />
         <Route path="premium-rental" element={<PremiumRental />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="setting" element={<Settings />} />
       </Route>
 
       <Route path="/dashboard" element={<Dashboard />}>

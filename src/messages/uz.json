@@ -27,7 +27,9 @@
       "start": "Boshlash",
       "contact": "Bog‘lanish",
       "more": "Batafsil"
-    }
+    },
+     "search": "Qidirish",
+    "cart": "Savat"
   },
   "home": {
     "brand": "BuildTrack",
@@ -38,7 +40,8 @@
       "delivery": "Yetkazib berish",
       "posPayroll": "POS & Maosh",
       "premiumRental": "Premium / Ijara",
-      "contact": "Aloqa"
+      "contact": "Aloqa",
+      "settings": "Sozlamalar"
     },
     "hero": {
       "badge": "Zamonaviy qurilish platformasi",
@@ -49,12 +52,12 @@
       "secondaryButton": "Batafsil"
     },
     "footer": {
-      "description": "BuildTrack — qurilish mollari savdosi va ombor boshqaruvi uchun zamonaviy platforma.",
-      "company": "Kompaniya",
-      "support": "Yordam",
-      "contact": "Aloqa",
-      "rights": "Barcha huquqlar himoyalangan."
-    }
+    "title": "Reklama va hamkorlik",
+    "title1": "Ommaviy offerta",
+    "title2": "Qo'llab-quvvatlash",
+    "description": "Barcha huquqlar himoyalangan",
+    "save": "BuildTrack group © 2026 "
+  }
   },
   "dashboard": {
     "brand": "BuildTrack",

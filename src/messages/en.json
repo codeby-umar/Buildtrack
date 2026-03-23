@@ -27,7 +27,9 @@
       "start": "Get Started",
       "contact": "Contact",
       "more": "Learn More"
-    }
+    },
+    "search": "Search",
+    "cart": "Cart"
   },
   "home": {
     "brand": "BuildTrack",
@@ -38,7 +40,8 @@
       "delivery": "Delivery",
       "posPayroll": "POS & Payroll",
       "premiumRental": "Premium / Rental",
-      "contact": "Contact"
+      "contact": "Contact",
+      "settings" : "Setting"
     },
     "hero": {
       "badge": "Modern construction platform",
@@ -48,13 +51,13 @@
       "primaryButton": "Get Started",
       "secondaryButton": "Learn More"
     },
-    "footer": {
-      "description": "BuildTrack is a modern platform for construction materials sales and warehouse management.",
-      "company": "Company",
-      "support": "Support",
-      "contact": "Contact",
-      "rights": "All rights reserved."
-    }
+   "footer": {
+    "title": "Advertising & Partnership",
+  "title1": "Public Offer",
+  "title2": "Support",
+  "description": "All rights reserved",
+  "save": "BuildTrack group © 2026"
+  }
   },
   "dashboard": {
     "brand": "BuildTrack",
