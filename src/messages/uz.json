@@ -1,0 +1,71 @@
+{
+  "common": {
+    "nav": {
+      "home": "Bosh sahifa",
+      "dashboard": "Dashboard",
+      "orders": "Buyurtmalar",
+      "products": "Mahsulotlar",
+      "warehouse": "Ombor",
+      "clients": "Mijozlar",
+      "settings": "Sozlamalar"
+    },
+    "theme": {
+      "light": "Kunduzgi",
+      "dark": "Tungi"
+    },
+    "language": {
+      "label": "Til"
+    },
+    "actions": {
+      "save": "Saqlash",
+      "cancel": "Bekor qilish",
+      "edit": "Tahrirlash",
+      "delete": "O‘chirish"
+    },
+    "buttons": {
+      "login": "Kirish",
+      "start": "Boshlash",
+      "contact": "Bog‘lanish",
+      "more": "Batafsil"
+    }
+  },
+  "home": {
+    "brand": "BuildTrack",
+    "navbar": {
+      "home": "Bosh sahifa",
+      "marketplace": "Marketplace",
+      "companies": "Kompaniyalar",
+      "delivery": "Yetkazib berish",
+      "posPayroll": "POS & Maosh",
+      "premiumRental": "Premium / Ijara",
+      "contact": "Aloqa"
+    },
+    "hero": {
+      "badge": "Zamonaviy qurilish platformasi",
+      "title": "Qurilish mollari savdosini bitta joyda boshqaring",
+      "highlight": "oson va tez",
+      "description": "Bozor, buyurtmalar, ombor va mijozlarni yagona tizimda boshqaring.",
+      "primaryButton": "Boshlash",
+      "secondaryButton": "Batafsil"
+    },
+    "footer": {
+      "description": "BuildTrack — qurilish mollari savdosi va ombor boshqaruvi uchun zamonaviy platforma.",
+      "company": "Kompaniya",
+      "support": "Yordam",
+      "contact": "Aloqa",
+      "rights": "Barcha huquqlar himoyalangan."
+    }
+  },
+  "dashboard": {
+    "brand": "BuildTrack",
+    "search": "Qidiruv...",
+    "pages": {
+      "dashboard": "Dashboard",
+      "orders": "Buyurtmalar",
+      "products": "Mahsulotlar",
+      "warehouse": "Ombor",
+      "clients": "Mijozlar",
+      "settings": "Sozlamalar"
+    }
+  }
+}

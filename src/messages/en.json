@@ -1,0 +1,71 @@
+{
+  "common": {
+    "nav": {
+      "home": "Home",
+      "dashboard": "Dashboard",
+      "orders": "Orders",
+      "products": "Products",
+      "warehouse": "Warehouse",
+      "clients": "Clients",
+      "settings": "Settings"
+    },
+    "theme": {
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "language": {
+      "label": "Language"
+    },
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "buttons": {
+      "login": "Login",
+      "start": "Get Started",
+      "contact": "Contact",
+      "more": "Learn More"
+    }
+  },
+  "home": {
+    "brand": "BuildTrack",
+    "navbar": {
+      "home": "Home",
+      "marketplace": "Marketplace",
+      "companies": "Companies",
+      "delivery": "Delivery",
+      "posPayroll": "POS & Payroll",
+      "premiumRental": "Premium / Rental",
+      "contact": "Contact"
+    },
+    "hero": {
+      "badge": "Modern construction platform",
+      "title": "Manage construction materials trade in one place",
+      "highlight": "easily and quickly",
+      "description": "Manage market, orders, warehouse, clients, and reports in one system.",
+      "primaryButton": "Get Started",
+      "secondaryButton": "Learn More"
+    },
+    "footer": {
+      "description": "BuildTrack is a modern platform for construction materials sales and warehouse management.",
+      "company": "Company",
+      "support": "Support",
+      "contact": "Contact",
+      "rights": "All rights reserved."
+    }
+  },
+  "dashboard": {
+    "brand": "BuildTrack",
+    "search": "Search...",
+    "pages": {
+      "dashboard": "Dashboard",
+      "orders": "Orders",
+      "products": "Products",
+      "warehouse": "Warehouse",
+      "clients": "Clients",
+      "settings": "Settings"
+    }
+  }
+}

@@ -1,9 +1,31 @@
-import React from 'react'
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 
-function i18n() {
-  return (
-    <div>i18n</div>
-  )
-}
+import uz from "./messages/uz.json";
+import en from "./messages/en.json";
+import ru from "./messages/ru.json";
 
-export default i18n
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: "uz",
+    supportedLngs: ["uz", "en", "ru"],
+    interpolation: {
+      escapeValue: false
+    },
+    resources: {
+      uz: {
+        translation: uz
+      },
+      en: {
+        translation: en
+      },
+      ru: {
+        translation: ru
+      }
+    }
+  });
+
+export default i18n;

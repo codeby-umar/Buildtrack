@@ -1,0 +1,71 @@
+{
+  "common": {
+    "nav": {
+      "home": "Главная",
+      "dashboard": "Панель",
+      "orders": "Заказы",
+      "products": "Товары",
+      "warehouse": "Склад",
+      "clients": "Клиенты",
+      "settings": "Настройки"
+    },
+    "theme": {
+      "light": "Светлая",
+      "dark": "Тёмная"
+    },
+    "language": {
+      "label": "Язык"
+    },
+    "actions": {
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "edit": "Редактировать",
+      "delete": "Удалить"
+    },
+    "buttons": {
+      "login": "Войти",
+      "start": "Начать",
+      "contact": "Связаться",
+      "more": "Подробнее"
+    }
+  },
+  "home": {
+    "brand": "BuildTrack",
+    "navbar": {
+      "home": "Главная",
+      "marketplace": "Маркетплейс",
+      "companies": "Компании",
+      "delivery": "Доставка",
+      "posPayroll": "POS и Зарплата",
+      "premiumRental": "Премиум / Аренда",
+      "contact": "Контакты"
+    },
+    "hero": {
+      "badge": "Современная строительная платформа",
+      "title": "Управляйте торговлей стройматериалами в одном месте",
+      "highlight": "легко и быстро",
+      "description": "Управляйте рынком, заказами, складом, клиентами и отчетами в одном месте.",
+      "primaryButton": "Начать",
+      "secondaryButton": "Подробнее"
+    },
+    "footer": {
+      "description": "BuildTrack — современная платформа для продажи стройматериалов и управления складом.",
+      "company": "Компания",
+      "support": "Поддержка",
+      "contact": "Контакты",
+      "rights": "Все права защищены."
+    }
+  },
+  "dashboard": {
+    "brand": "BuildTrack",
+    "search": "Поиск...",
+    "pages": {
+      "dashboard": "Панель",
+      "orders": "Заказы",
+      "products": "Товары",
+      "warehouse": "Склад",
+      "clients": "Клиенты",
+      "settings": "Настройки"
+    }
+  }
+}
