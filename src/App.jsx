@@ -16,6 +16,10 @@ import PosPayroll from "./pages/PosPayroll";
 import Contact from "./pages/Contact";
 import PremiumRental from "./pages/PremiumRental";
 import Settings from "./pages/Settings";
+import Login from "./pages/Login";
+import Cart from "./pages/Cart";
+import ProductDetail from "./pages/ProductDetail";
+import RequireAuth from "./auth/RequireAuth";
 
 function App() {
   return (
@@ -29,9 +33,26 @@ function App() {
         <Route path="premium-rental" element={<PremiumRental />} />
         <Route path="contact" element={<Contact />} />
         <Route path="setting" element={<Settings />} />
+        <Route path="login" element={<Login />} />
+        <Route
+          path="cart"
+          element={
+            <RequireAuth>
+              <Cart />
+            </RequireAuth>
+          }
+        />
+        <Route path="product/:productId" element={<ProductDetail />} />
       </Route>
 
-      <Route path="/dashboard" element={<Dashboard />}>
+      <Route
+        path="/dashboard"
+        element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }
+      >
         <Route index element={<DashboardPage />} />
         <Route path="orders" element={<Orders />} />
         <Route path="products" element={<Products />} />

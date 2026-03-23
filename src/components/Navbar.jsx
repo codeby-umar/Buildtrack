@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
+import { useAuth } from "../auth/AuthContext";
+import { fetchCatalogProducts } from "../api/catalog";
 import {
   ShoppingCart,
   User,
@@ -12,17 +14,19 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const dummyData = [
-  { id: 1, name: "Portland sement M400", category: "Marketplace" },
-  { id: 2, name: "Armatura 12mm", category: "Marketplace" },
-  { id: 3, name: "Yetkazib berish xizmati", category: "Delivery" },
-  { id: 4, name: "Mega Qurilish Market", category: "Companies" },
-];
+function pickProductId(p) {
+  return p?.id ?? p?.product_id ?? p?.uuid ?? p?.productId ?? null;
+}
+
+function pickProductName(p) {
+  return p?.name ?? p?.title ?? p?.slug ?? "Product";
+}
 
 function Navbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated } = useAuth();
 
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -45,23 +49,40 @@ function Navbar() {
   );
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const trimmed = query.trim().toLowerCase();
+    let cancelled = false;
+    const timer = setTimeout(async () => {
+      const trimmed = query.trim();
       if (trimmed.length <= 1) {
         setResults([]);
         setIsSearching(false);
         setShowDropdown(false);
         return;
       }
-      setIsSearching(true);
-      const filtered = dummyData.filter((item) =>
-        item.name.toLowerCase().includes(trimmed)
-      );
-      setResults(filtered);
-      setIsSearching(false);
-      setShowDropdown(true);
+      try {
+        setIsSearching(true);
+        const { res, payload } = await fetchCatalogProducts({
+          page: 1,
+          pageSize: 6,
+          q: trimmed,
+        });
+        if (cancelled) return;
+        if (!res.ok || payload?.success === false) {
+          setResults([]);
+          setShowDropdown(false);
+          setIsSearching(false);
+          return;
+        }
+        setResults(payload?.data?.items ?? payload?.data ?? payload?.items ?? []);
+        setShowDropdown(true);
+      } finally {
+        if (!cancelled) setIsSearching(false);
+      }
     }, 300);
-    return () => clearTimeout(timer);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
   }, [query]);
 
   useEffect(() => {
@@ -78,8 +99,9 @@ function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleResultClick = (id) => {
-    navigate(`/product/${id}`);
+  const handleResultClick = (product) => {
+    const id = pickProductId(product);
+    navigate(`/product/${id}`, { state: { product: product ?? null } });
     setQuery("");
     setShowDropdown(false);
   };
@@ -102,13 +124,17 @@ function Navbar() {
           ) : results.length > 0 ? (
             results.map((item) => (
               <button
-                key={item.id}
-                onClick={() => handleResultClick(item.id)}
+                key={pickProductId(item) ?? pickProductName(item)}
+                onClick={() => handleResultClick(item)}
                 className="group flex w-full items-center justify-between rounded-xl px-4 py-3 text-left transition hover:bg-yellow-50"
               >
                 <div>
-                  <div className="text-sm font-bold leading-tight text-zinc-900">{item.name}</div>
-                  <div className="text-[10px] font-black uppercase text-black/40">{item.category}</div>
+                  <div className="text-sm font-bold leading-tight text-zinc-900">
+                    {pickProductName(item)}
+                  </div>
+                  <div className="text-[10px] font-black uppercase text-black/40">
+                    {item?.is_premium ? "Premium" : item?.is_rental ? "Rental" : "Product"}
+                  </div>
                 </div>
                 <ArrowRight className="h-4 w-4 -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
               </button>
@@ -172,7 +198,7 @@ function Navbar() {
 
             {/* LOGIN TUGMASI - Endi hamma razmerda ko'rinadi */}
             <NavLink
-              to="/dashboard"
+              to={isAuthenticated ? "/dashboard" : "/login"}
               className="rounded-full p-2 transition hover:bg-white/40"
             >
               <User className="h-5 w-5" />

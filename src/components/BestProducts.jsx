@@ -1,149 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FaStar, FaCrown } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 
-const mockProducts = [
-  {
-    id: 1,
-    brand: "BuildTrack",
-    badge: "Top mahsulot",
-    title: "Portland sement M400 50kg",
-    image:
-      "https://images.unsplash.com/photo-1599707254554-027aeb4deacd?q=80&w=1200&auto=format&fit=crop",
-    rating: 5,
-    reviews: 124,
-    price: "78 000",
-    oldPrice: "85 000",
-    discount: "-8%",
-    shipping: "Bepul yetkazib berish",
-  },
-  {
-    id: 2,
-    brand: "BuildTrack",
-    badge: "Chegirma",
-    title: "Qizil g‘isht 1 dona",
-    image:
-      "https://images.unsplash.com/photo-1517022812141-23620dba5c23?q=80&w=1200&auto=format&fit=crop",
-    rating: 4,
-    reviews: 86,
-    price: "2 200",
-    oldPrice: "2 500",
-    discount: "-12%",
-    shipping: "Bepul yetkazib berish",
-  },
-  {
-    id: 3,
-    brand: "BuildTrack",
-    badge: "Top mahsulot",
-    title: "Armatura 12mm",
-    image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop",
-    rating: 4,
-    reviews: 53,
-    price: "89 000",
-    oldPrice: "96 000",
-    discount: "-7%",
-    shipping: "Bepul yetkazib berish",
-  },
-  {
-    id: 4,
-    brand: "BuildTrack",
-    badge: "Yangi",
-    title: "Profil truba 40x40",
-    image:
-      "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=1200&auto=format&fit=crop",
-    rating: 5,
-    reviews: 41,
-    price: "67 000",
-    oldPrice: "73 000",
-    discount: "-9%",
-    shipping: "Bepul yetkazib berish",
-  },
-  {
-    id: 5,
-    brand: "BuildTrack",
-    badge: "Top mahsulot",
-    title: "Keramik plitka premium 60x60",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop",
-    rating: 4,
-    reviews: 97,
-    price: "129 000",
-    oldPrice: "145 000",
-    discount: "-11%",
-    shipping: "Bepul yetkazib berish",
-  },
-  {
-    id: 6,
-    brand: "BuildTrack",
-    badge: "Yangi",
-    title: "Shpaklyovka finish 25kg",
-    image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop",
-    rating: 4,
-    reviews: 34,
-    price: "54 000",
-    oldPrice: "59 000",
-    discount: "-8%",
-    shipping: "Bepul yetkazib berish",
-  },
-  {
-    id: 7,
-    brand: "BuildTrack",
-    badge: "Top mahsulot",
-    title: "Beton uchun qum 1 qop",
-    image:
-      "https://images.unsplash.com/photo-1517022812141-23620dba5c23?q=80&w=1200&auto=format&fit=crop",
-    rating: 5,
-    reviews: 77,
-    price: "18 000",
-    oldPrice: "20 000",
-    discount: "-10%",
-    shipping: "Bepul yetkazib berish",
-  },
-  {
-    id: 8,
-    brand: "BuildTrack",
-    badge: "Chegirma",
-    title: "Tom yopish profnasti 1.2m",
-    image:
-      "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=1200&auto=format&fit=crop",
-    rating: 4,
-    reviews: 65,
-    price: "112 000",
-    oldPrice: "125 000",
-    discount: "-10%",
-    shipping: "Bepul yetkazib berish",
-  },
-  {
-    id: 9,
-    brand: "BuildTrack",
-    badge: "Premium",
-    title: "Fasad bo‘yog‘i 10 litr",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop",
-    rating: 5,
-    reviews: 90,
-    price: "149 000",
-    oldPrice: "165 000",
-    discount: "-9%",
-    shipping: "Bepul yetkazib berish",
-  },
-  {
-    id: 10,
-    brand: "BuildTrack",
-    badge: "Top mahsulot",
-    title: "Gazoblok 600x200x300",
-    image:
-      "https://images.unsplash.com/photo-1599707254554-027aeb4deacd?q=80&w=1200&auto=format&fit=crop",
-    rating: 4,
-    reviews: 58,
-    price: "32 000",
-    oldPrice: "36 000",
-    discount: "-11%",
-    shipping: "Bepul yetkazib berish",
-  },
-];
+import { fetchCatalogProducts } from "../api/catalog";
 
 function ProductSkeleton() {
   return (
@@ -161,27 +20,57 @@ function ProductSkeleton() {
 }
 
 function ProductCard({ product }) {
+  const title = product?.title ?? product?.name ?? product?.slug ?? "Product";
+  const brand = product?.brand ?? "BuildTrack";
+  const image = product?.image ?? product?.thumbnail ?? product?.imgUrl;
+
+  const price = product?.price ?? product?.unit_price ?? product?.amount ?? "";
+  const discountPrice =
+    product?.discount_price ?? product?.discountPrice ?? null;
+
+  const hasDiscount =
+    discountPrice !== null &&
+    discountPrice !== undefined &&
+    price !== "" &&
+    Number.isFinite(Number(discountPrice)) &&
+    Number.isFinite(Number(price)) &&
+    Number(price) > 0;
+
+  const discount = hasDiscount
+    ? `-${Math.round((1 - Number(discountPrice) / Number(price)) * 100)}%`
+    : product?.discount ?? "";
+
+  const oldPrice =
+    product?.oldPrice ?? (hasDiscount ? String(price) : "");
+
+  const badge =
+    product?.badge ??
+    (product?.is_premium ? "Premium" : product?.is_rental ? "Rental" : "Top");
+
+  const rating = product?.rating ?? 4;
+  const reviews = product?.reviews ?? 0;
+
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-sm bg-white transition-all duration-300 hover:-translate-y-0.5">
       <div className="relative overflow-hidden bg-slate-100">
         <img
-          src={product.image}
-          alt={product.title}
+          src={image}
+          alt={title}
           className="h-28 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-32 lg:h-36"
         />
 
         <div className="absolute left-2 top-2 rounded-md bg-yellow-400 px-2 py-1 text-[9px] font-bold text-black">
-          {product.badge}
+          {badge}
         </div>
 
         <div className="absolute bottom-2 left-2 rounded-md bg-black px-2 py-1 text-[9px] font-semibold text-white">
-          {product.brand}
+          {brand}
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-2.5 sm:p-3">
         <h3 className="line-clamp-2 min-h-[38px] text-[13px] font-bold leading-5 text-slate-900 sm:min-h-[40px] sm:text-sm">
-          {product.title}
+          {title}
         </h3>
 
         <div className="mt-1.5 flex items-center gap-1">
@@ -189,32 +78,32 @@ function ProductCard({ product }) {
             <FaStar
               key={star}
               className={`h-3 w-3 ${
-                star <= product.rating ? "text-yellow-400" : "text-slate-300"
+                star <= rating ? "text-yellow-400" : "text-slate-300"
               }`}
             />
           ))}
           <span className="ml-1 text-[11px] font-medium text-slate-500">
-            {product.reviews}
+            {reviews}
           </span>
         </div>
 
         <div className="mt-2 flex items-center gap-1.5">
           <span className="text-base font-black text-slate-900 sm:text-lg">
-            {product.price}
+            {hasDiscount ? discountPrice : price}
           </span>
           <span className="rounded-md bg-red-500 px-1.5 py-0.5 text-[9px] font-bold text-white">
-            {product.discount}
+            {discount}
           </span>
         </div>
 
         <div className="mt-0.5">
           <span className="text-xs text-slate-400 line-through">
-            {product.oldPrice}
+            {oldPrice}
           </span>
         </div>
 
         <p className="mt-2 text-[11px] font-semibold text-slate-600">
-          {product.shipping}
+          Bepul yetkazib berish
         </p>
 
         <button
@@ -234,12 +123,28 @@ function BestProdects() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setProducts(mockProducts);
-      setLoading(false);
-    }, 900);
-
-    return () => clearTimeout(timer);
+    let cancelled = false;
+    async function load() {
+      setLoading(true);
+      try {
+        const { res, payload } = await fetchCatalogProducts({
+          page: 1,
+          pageSize: 10,
+        });
+        if (cancelled) return;
+        if (!res.ok || payload?.success === false) {
+          setProducts([]);
+          return;
+        }
+        setProducts(payload?.data?.items ?? payload?.data ?? payload?.items ?? payload ?? []);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (
